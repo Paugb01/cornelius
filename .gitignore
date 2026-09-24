@@ -1,13 +1,54 @@
+# >>> Trinity default ignore rules — managed; your own rules go BELOW and win (#2529) >>>
+.bash_logout
+.bashrc
+.profile
+.bash_history
+.sudo_as_admin_successful
+.cache/
+.local/
+.npm/
+.tmp/
+.trinity-clone-tmp/
+content/
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.sqlite
+*.sqlite3
+*.db
+.claude.json
+.claude.json.backup
+.claude/projects/
+.claude/statsig/
+.claude/todos/
+.claude/debug/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/plugins/
+.claude/settings.json
+.claude/remote-settings.json
+.claude/policy-limits.json
+.claude/backups/
+.claude/.last-cleanup
+*.log
+*.tmp
+.DS_Store
+*.local.md
+*.local.json
+# <<< Trinity default ignore rules <<<
 # =============================================================================
 # TRINITY PLATFORM - REQUIRED EXCLUSIONS
 # =============================================================================
 
 # Credentials and secrets (NEVER commit these)
-.mcp.json
 .mcp.backup.json
-.env
-*.pem
-*.key
 *.p12
 *.pfx
 
@@ -18,8 +59,6 @@ settings.local.json
 
 # Claude runtime state (NOT agent value - these are ephemeral)
 # Agent value (.claude/skills/, rules/, agents/, commands/, memory/) MUST be tracked
-.claude/debug/
-.claude/projects/
 .claude/cache/
 .claude/credentials/
 
@@ -31,9 +70,6 @@ settings.local.json
 # re-included — git cannot re-include files beneath an excluded DIRECTORY
 # (trinity-enterprise#76). Runtime state under brain-orb/ stays ignored via the
 # explicit trailing rules (last match wins).
-.trinity/*
-!.trinity/setup.sh
-!.trinity/brain-orb/
 .trinity/brain-orb/state.json
 .trinity/brain-orb/voice-postprocess.json
 .trinity/brain-orb/voice-postprocess.md
@@ -59,7 +95,6 @@ resources/**/*.m4a
 # =============================================================================
 
 # macOS
-.DS_Store
 .AppleDouble
 .LSOverride
 ._*
@@ -106,7 +141,6 @@ Desktop.ini
 # =============================================================================
 
 # Node.js
-node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -114,19 +148,13 @@ yarn-error.log*
 .yarn-integrity
 
 # Python
-__pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-.venv/
-venv/
 ENV/
 .eggs/
 *.egg-info/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
 
 # =============================================================================
 # BUILD OUTPUTS
@@ -135,7 +163,6 @@ ENV/
 # General
 dist/
 build/
-*.log
 
 # Quartz (static site generator)
 quartz-site/public/
@@ -194,7 +221,6 @@ resources/scratch/
 /archive/
 
 # Stray OS/sudo junk
-.sudo_as_admin_successful
 
 # Session-specific outputs (if not needed in version control)
 # outputs/temp/
@@ -215,15 +241,9 @@ EXTRACTION_COMPLETE.md
 
 # External reference folders (symlinks or copies)
 Eugene Personal Brand/
-.local/
-content/
 
 # Claude runtime state (ephemeral, should not be tracked)
-.claude/statsig/
-.claude/todos/
-.claude/shell-snapshots/
 .claude/stats-cache.json
-.cache/
 
 # Playwright MCP browser output (ephemeral console logs / traces)
 .playwright-mcp/
@@ -248,3 +268,23 @@ resources/entropy/pca_basis.npz
 # Were swept in as an orphaned gitlink by a `git add -A` sync commit, which
 # broke `git submodule update --init` repo-wide once .gitmodules existed.
 .claude/plugins/marketplaces/
+# >>> Trinity protected rules — managed; NOT overridable (credentials + platform-authored paths, #2529) >>>
+.env
+.env.*
+.mcp.json
+credentials.json
+*.pem
+*.key
+.ssh/
+.trinity/*
+!.trinity/pre-check
+!.trinity/post-check
+!.trinity/pre-snapshot
+!.trinity/setup.sh
+!.trinity/persistent-processes.allow
+!.trinity/brain-orb/
+!.trinity/pipelines/
+!.trinity/plugins.yaml
+!.env.example
+!.mcp.json.template
+# <<< Trinity protected rules <<<

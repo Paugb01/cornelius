@@ -1,0 +1,6 @@
+plugins:
+  installed:
+  - trinity@abilityai
+  marketplaces:
+  - name: abilityai
+    source: abilityai/abilities

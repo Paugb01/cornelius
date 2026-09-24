@@ -3,5 +3,8 @@
     "deny": [
       "Read(../CLAUDE.md)"
     ]
+  },
+  "enabledPlugins": {
+    "trinity@abilityai": true
   }
 }
